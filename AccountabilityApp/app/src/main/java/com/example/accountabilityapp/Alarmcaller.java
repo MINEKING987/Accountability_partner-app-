@@ -48,8 +48,8 @@ public class Alarmcaller {
             intent.putExtra("until",until);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(ct, RQS_1, intent, 0);
             AlarmManager alarmManager = (AlarmManager) ct.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.cancel(pendingIntent);
             alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-            Toast.makeText(ct, "alarm caller called", Toast.LENGTH_SHORT).show();
         }
     }
 }

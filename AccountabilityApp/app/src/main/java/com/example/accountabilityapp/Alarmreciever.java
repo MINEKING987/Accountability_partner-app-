@@ -6,6 +6,8 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
@@ -25,16 +27,19 @@ public class Alarmreciever extends BroadcastReceiver {
         String date =  intent.getExtras().getString("date");
         String until =  intent.getExtras().getString("until");
         cmds.updateitem(context,title,date,until);
+        createNotificationChannel();
         Intent intent2 = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "CHANNEL_ID")
                 .setSmallIcon(R.drawable.alarm_add)
                 .setContentTitle("Alarm Reached!")
-                .setContentText("textContent")
+                .setContentText("The alarm "+title+" was just reached!")
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        builder.setSound(alarmSound);
                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(11651, builder.build());
     }

@@ -29,10 +29,10 @@ public class Sqlcmds {
             values.put(DBhelper.FeedEntry.COLUMN_NAME_Timedaily, time);
             long newRowId = db.insert(DBhelper.FeedEntry.TABLE_NAME, null, values);
             if(newRowId == -1){
-                Toast.makeText(ct, "Error found...Please Retry(please don't enter exact same task name)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ct, "Error found...Please Retry(Don't enter the exact same task name)", Toast.LENGTH_SHORT).show();
             }
             else
-            {Toast.makeText(ct, "Entry Saved", Toast.LENGTH_SHORT).show();
+            {Toast.makeText(ct, "Task successfully added!", Toast.LENGTH_SHORT).show();
             }
         }
         catch (SQLException e){

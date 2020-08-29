@@ -43,6 +43,7 @@ public class TaskCreationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Create new Task");
         setContentView(R.layout.activity_task_creation);
         save = findViewById(R.id.button_save);
         Datepick = findViewById(R.id.button);
